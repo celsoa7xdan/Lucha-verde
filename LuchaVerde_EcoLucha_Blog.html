@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Blog de noticias LuchaVerde / EcoLucha Studio sobre sustentabilidad, economía circular y cultura mexicana.">
+  <title>LuchaVerde Noticias | EcoLucha Studio</title>
+  <style>
+    :root{
+      --negro:#0b0b0b;
+      --negro2:#151515;
+      --blanco:#f5f1e8;
+      --verde:#62c370;
+      --verde2:#2e8b57;
+      --rojo:#d62828;
+      --amarillo:#f2c94c;
+      --gris:#bdbdbd;
+      --card:#1b1b1b;
+      --sombra:0 12px 30px rgba(0,0,0,.35);
+    }
+
+    *{box-sizing:border-box;scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--negro);
+      color:var(--blanco);
+      line-height:1.6;
+    }
+
+    header{
+      min-height:92vh;
+      display:flex;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(120deg,rgba(0,0,0,.94),rgba(0,0,0,.68)),
+        radial-gradient(circle at 80% 25%, rgba(98,195,112,.28), transparent 30%),
+        radial-gradient(circle at 20% 80%, rgba(214,40,40,.22), transparent 28%),
+        #101010;
+    }
+
+    header:before, header:after{
+      content:"";
+      position:absolute;
+      border:3px solid rgba(98,195,112,.2);
+      transform:rotate(25deg);
+    }
+    header:before{width:500px;height:500px;right:-180px;top:-220px}
+    header:after{width:300px;height:300px;left:-130px;bottom:-170px}
+
+    nav{
+      position:fixed;
+      top:0;left:0;right:0;
+      z-index:10;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:16px 7%;
+      background:rgba(8,8,8,.9);
+      backdrop-filter:blur(8px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .logo{
+      font-weight:900;
+      font-size:1.35rem;
+      letter-spacing:1px;
+    }
+    .logo span{color:var(--verde)}
+
+    nav a{
+      color:var(--blanco);
+      text-decoration:none;
+      margin-left:22px;
+      font-size:.92rem;
+      font-weight:bold;
+    }
+    nav a:hover{color:var(--verde)}
+
+    .hero{
+      width:min(1100px,90%);
+      margin:auto;
+      position:relative;
+      z-index:2;
+      padding-top:70px;
+    }
+
+    .tag{
+      display:inline-block;
+      padding:7px 13px;
+      border:1px solid var(--verde);
+      color:var(--verde);
+      border-radius:30px;
+      font-size:.8rem;
+      font-weight:bold;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+
+    h1{
+      font-size:clamp(3.3rem,9vw,7.5rem);
+      line-height:.86;
+      margin:25px 0;
+      text-transform:uppercase;
+      max-width:900px;
+      letter-spacing:-4px;
+    }
+    h1 span{color:var(--verde)}
+    .hero p{
+      max-width:700px;
+      color:#d4d4d4;
+      font-size:1.12rem;
+    }
+
+    .buttons{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+    .btn{
+      display:inline-block;
+      padding:13px 20px;
+      border-radius:5px;
+      text-decoration:none;
+      font-weight:900;
+      border:1px solid var(--verde);
+    }
+    .primary{background:var(--verde);color:#071008}
+    .secondary{color:var(--blanco)}
+    .secondary:hover{background:var(--verde);color:#071008}
+
+    .section{
+      width:min(1100px,90%);
+      margin:auto;
+      padding:90px 0;
+    }
+
+    .section-title{
+      font-size:2.5rem;
+      margin:0 0 10px;
+      text-transform:uppercase;
+    }
+    .section-title span{color:var(--verde)}
+    .lead{color:var(--gris);max-width:760px}
+
+    .mission-grid,.product-grid,.impact-grid,.income-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+      margin-top:35px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.08);
+      padding:25px;
+      border-radius:10px;
+      box-shadow:var(--sombra);
+    }
+    .card h3{margin-top:0;font-size:1.25rem}
+    .card p{color:#c9c9c9}
+    .icon{
+      font-size:2.2rem;
+      margin-bottom:12px;
+    }
+
+    .products{
+      grid-template-columns:repeat(3,1fr);
+    }
+    .product{
+      min-height:230px;
+      position:relative;
+      overflow:hidden;
+    }
+    .product:after{
+      content:"";
+      position:absolute;
+      right:-40px;bottom:-55px;
+      width:150px;height:150px;
+      border:25px solid rgba(98,195,112,.08);
+      border-radius:50%;
+    }
+    .product h3{color:var(--verde)}
+
+    .highlight{
+      margin:30px 0;
+      padding:35px;
+      border-left:5px solid var(--rojo);
+      background:linear-gradient(90deg,#171717,#0d0d0d);
+      border-radius:8px;
+    }
+    .highlight strong{color:var(--amarillo)}
+
+    .characters{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:25px;
+      margin-top:35px;
+    }
+    .character{
+      padding:35px;
+      border-radius:12px;
+      min-height:270px;
+      background:#171717;
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .character.eco{border-top:5px solid var(--verde)}
+    .character.rudo{border-top:5px solid var(--rojo)}
+    .character h3{font-size:1.8rem;margin-bottom:5px}
+
+    .steps{
+      counter-reset:paso;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+      margin-top:35px;
+    }
+    .step{
+      position:relative;
+      padding:25px;
+      background:#171717;
+      border-radius:10px;
+    }
+    .step:before{
+      counter-increment:paso;
+      content:counter(paso);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:38px;height:38px;
+      border-radius:50%;
+      background:var(--verde);
+      color:#071008;
+      font-weight:900;
+      margin-bottom:15px;
+    }
+
+    .cta{
+      text-align:center;
+      padding:75px 25px;
+      background:
+        linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.72)),
+        repeating-linear-gradient(45deg,#182018 0 10px,#111 10px 20px);
+      border-radius:15px;
+      border:1px solid rgba(98,195,112,.3);
+    }
+    .cta h2{font-size:clamp(2rem,5vw,4rem);margin:0 0 12px}
+    .cta p{color:#d2d2d2;max-width:700px;margin:0 auto 25px}
+
+    footer{
+      padding:35px 7%;
+      background:#050505;
+      color:#999;
+      text-align:center;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+    footer strong{color:var(--verde)}
+
+
+    .comments-section{
+      margin-top:55px;
+      padding:32px;
+      background:#151515;
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:12px;
+      box-shadow:var(--sombra);
+    }
+    .comments-section h3{margin-top:0;font-size:1.8rem}
+    .comment-form{
+      display:grid;
+      gap:12px;
+      margin-top:20px;
+    }
+    .comment-form input,.comment-form textarea{
+      width:100%;
+      padding:13px 15px;
+      border-radius:6px;
+      border:1px solid #444;
+      background:#0d0d0d;
+      color:var(--blanco);
+      font:inherit;
+      outline:none;
+    }
+    .comment-form input:focus,.comment-form textarea:focus{
+      border-color:var(--verde);
+    }
+    .comment-form textarea{min-height:120px;resize:vertical}
+    .comment-list{
+      display:grid;
+      gap:13px;
+      margin-top:28px;
+    }
+    .comment{
+      padding:17px;
+      background:#0d0d0d;
+      border-left:3px solid var(--verde);
+      border-radius:7px;
+    }
+    .comment strong{color:var(--verde)}
+    .comment small{color:#888;margin-left:8px}
+    .comment p{margin:8px 0 0;color:#ddd;white-space:pre-wrap}
+    .empty-comments{color:#999;font-style:italic}
+    .delete-comment{
+      float:right;
+      background:none;
+      border:0;
+      color:#888;
+      cursor:pointer;
+      font-size:.85rem;
+    }
+    .delete-comment:hover{color:#ff7777}
+
+    @media(max-width:800px){
+      nav{padding:14px 5%}
+      nav .links{display:none}
+      .mission-grid,.product-grid,.impact-grid,.income-grid,.steps,.characters{
+        grid-template-columns:1fr;
+      }
+      h1{letter-spacing:-2px}
+      .section{padding:65px 0}
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="logo">LUCHAVERDE <span>/ ECOLUCHA</span></div>
+    <div class="links">
+      <a href="#nosotros">Nosotros</a>
+      <a href="#noticias">Noticias</a>
+      <a href="#impacto">Impacto</a>
+      <a href="#cultura">Cultura</a>
+      <a href="#comentarios">Comentarios</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="hero">
+      <div class="tag">Lucha libre + economía circular</div>
+      <h1>Le ponemos la de a caballo a <span>la contaminación.</span></h1>
+      <p>
+        Somos LuchaVerde / EcoLucha Studio, una empresa mexicana que convierte
+        residuos industriales, textiles y urbanos en piezas únicas de arte,
+        moda y cultura inspiradas en la lucha libre.
+      </p>
+      <div class="buttons">
+        <a class="btn primary" href="#noticias">Leer las noticias</a>
+        <a class="btn secondary" href="#impacto">Conocer nuestro impacto</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="nosotros">
+      <h2 class="section-title">Una nueva <span>forma de luchar</span></h2>
+      <p class="lead">
+        En LuchaVerde creemos que la tradición mexicana y el cuidado del planeta
+        no tienen por qué enfrentarse. Nuestra propuesta une diseño, artesanía,
+        cultura popular y sustentabilidad para darle una segunda vida a los materiales.
+      </p>
+
+      <div class="mission-grid">
+        <article class="card">
+          <div class="icon">🌱</div>
+          <h3>Misión</h3>
+          <p>
+            Transformar residuos en piezas únicas de arte, moda y parafernalia
+            inspiradas en la lucha libre, impulsando la cultura mexicana,
+            la sustentabilidad y el comercio justo.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🥇</div>
+          <h3>Visión</h3>
+          <p>
+            Ser una marca pionera a nivel global en la unión del deporte espectáculo
+            con la economía circular, demostrando que tradición y ambiente pueden
+            trabajar en equipo.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="icon">♻️</div>
+          <h3>Propuesta de valor</h3>
+          <p>
+            Productos de identidad cultural fabricados con materiales reciclados
+            o de bajo impacto, acompañados de información sobre su trazabilidad
+            y huella ambiental.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="noticias">
+      <h2 class="section-title">Noticias <span>EcoLucha</span></h2>
+      <p class="lead">
+        Un espacio para conocer las novedades sobre sustentabilidad, economía circular,
+        cultura mexicana, reciclaje y el movimiento de la lucha libre.
+      </p>
+
+      <div class="product-grid">
+        <article class="card product">
+          <div class="icon">📰</div>
+          <h3>La lucha libre también puede ser sustentable</h3>
+          <p>
+            La cultura de la lucha libre inspira nuevas formas de hablar sobre el
+            consumo responsable y la reutilización de materiales. En esta edición
+            exploramos cómo tradición y conciencia ambiental pueden compartir el ring.
+          </p>
+          <a class="btn secondary" href="#cultura">Leer más →</a>
+        </article>
+
+        <article class="card product">
+          <div class="icon">♻️</div>
+          <h3>Del residuo al ring: el poder del upcycling</h3>
+          <p>
+            Lonas, textiles, plástico y otros materiales pueden tener una segunda vida.
+            Conoce las técnicas que están cambiando la manera en que entendemos los residuos.
+          </p>
+          <a class="btn secondary" href="#impacto">Leer más →</a>
+        </article>
+
+        <article class="card product">
+          <div class="icon">🌎</div>
+          <h3>Economía circular: una nueva llave contra la contaminación</h3>
+          <p>
+            Reducir, reutilizar y transformar son movimientos fundamentales para avanzar
+            hacia modelos de producción más responsables.
+          </p>
+          <a class="btn secondary" href="#impacto">Leer más →</a>
+        </article>
+
+        <article class="card product">
+          <div class="icon">🎨</div>
+          <h3>Artesanos que transforman materiales</h3>
+          <p>
+            Detrás de cada proyecto sustentable existen personas, talleres y comunidades
+            que convierten materiales recuperados en piezas con identidad.
+          </p>
+          <a class="btn secondary" href="#cultura">Leer más →</a>
+        </article>
+
+        <article class="card product">
+          <div class="icon">🎭</div>
+          <h3>Máscaras con historia</h3>
+          <p>
+            La máscara es uno de los símbolos más reconocibles de la lucha libre.
+            Ahora también puede convertirse en una herramienta para hablar de reutilización.
+          </p>
+          <a class="btn secondary" href="#cultura">Leer más →</a>
+        </article>
+
+        <article class="card product">
+          <div class="icon">📢</div>
+          <h3>El Chatarra contra El Ecológico</h3>
+          <p>
+            Dos personajes, dos formas de entender el mundo y una pregunta:
+            ¿qué futuro queremos construir fuera del ring?
+          </p>
+          <a class="btn secondary" href="#cultura">Leer más →</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="impacto">
+      <h2 class="section-title">Cada compra es una <span>llave al futuro</span></h2>
+      <p class="lead">
+        Nuestro impacto busca ser visible. Por eso cada producto puede incorporar
+        un código QR con información sobre el material recuperado y la historia
+        detrás de su elaboración.
+      </p>
+
+      <div class="impact-grid">
+        <article class="card">
+          <div class="icon">♻️</div>
+          <h3>Material recuperado</h3>
+          <p>Conoce cuántos kilogramos de plástico o tela fueron desviados de los vertederos.</p>
+        </article>
+        <article class="card">
+          <div class="icon">💧</div>
+          <h3>Agua ahorrada</h3>
+          <p>Visualiza una estimación de los litros de agua ahorrados frente a procesos convencionales.</p>
+        </article>
+        <article class="card">
+          <div class="icon">🤝</div>
+          <h3>Personas detrás de la pieza</h3>
+          <p>Descubre la historia del artesano, taller o cooperativa que participó en su elaboración.</p>
+        </article>
+      </div>
+
+      <div class="highlight">
+        <strong>El objetivo:</strong> que una pieza de LuchaVerde no sea solamente
+        bonita o funcional, sino que también pueda contar cuánto material recuperó,
+        quién ayudó a fabricarla y qué impacto positivo representa.
+      </div>
+    </section>
+
+    <section class="section" id="cultura">
+      <h2 class="section-title">Cultura y <span>conciencia</span></h2>
+      <p class="lead">
+        Nuestra narrativa convierte la problemática ambiental en un espectáculo:
+        dos personajes representan el conflicto y enseñan que todos podemos elegir
+        de qué lado subir al ring.
+      </p>
+
+      <div class="characters">
+        <article class="character eco">
+          <h3>🌿 El Ecológico</h3>
+          <p>
+            El técnico que defiende al planeta. Utiliza materiales biodegradables,
+            reciclados y de bajo impacto. Su movimiento estrella: aplicar
+            “la guillotina” a la huella de carbono.
+          </p>
+        </article>
+
+        <article class="character rudo">
+          <h3>☠️ El Chatarra / Míster Plástico</h3>
+          <p>
+            El rudo que representa la contaminación, el consumo desmedido,
+            la obsolescencia programada y la cultura de usar y desechar.
+          </p>
+        </article>
+      </div>
+
+      <h2 class="section-title" style="margin-top:75px">De la <span>basura</span> al objeto de colección</h2>
+      <div class="steps">
+        <article class="step">
+          <h3>Rescatamos</h3>
+          <p>
+            Trabajamos con imprentas, talleres de costura, vulcanizadoras y otros
+            aliados para recuperar materiales que todavía pueden tener una segunda vida.
+          </p>
+        </article>
+        <article class="step">
+          <h3>Transformamos</h3>
+          <p>
+            Diseñamos y fabricamos piezas mediante upcycling, impresión 3D,
+            moldeo y trabajo artesanal.
+          </p>
+        </article>
+        <article class="step">
+          <h3>Contamos la historia</h3>
+          <p>
+            Cada producto comunica su origen y su impacto para conectar al consumidor
+            con la pieza y con las personas que participaron en su creación.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Reportajes y <span>comunidad</span></h2>
+      <div class="steps">
+        <article class="step">
+          <h3>Historias verdes</h3>
+          <p>
+            Reportajes sobre personas y proyectos que están encontrando nuevas formas
+            de reducir residuos y aprovechar materiales.
+          </p>
+        </article>
+        <article class="step">
+          <h3>Cultura mexicana</h3>
+          <p>
+            Noticias y contenidos sobre la relación entre diseño, artesanía,
+            identidad mexicana y cultura popular.
+          </p>
+        </article>
+        <article class="step">
+          <h3>Voces de la comunidad</h3>
+          <p>
+            Ideas, opiniones y experiencias para abrir la conversación sobre
+            sustentabilidad y consumo responsable.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="comentarios">
+      <h2 class="section-title">Comentarios de la <span>comunidad</span></h2>
+      <p class="lead">
+        Comparte tu opinión sobre nuestras noticias, reportajes y temas ambientales.
+        Los comentarios se guardan automáticamente en este navegador.
+      </p>
+
+      <div class="comments-section">
+        <h3>💬 Deja tu comentario</h3>
+        <form class="comment-form" id="commentForm">
+          <input id="commentName" type="text" maxlength="50" placeholder="Tu nombre" required>
+          <textarea id="commentText" maxlength="500" placeholder="Escribe tu comentario..." required></textarea>
+          <button class="btn primary" type="submit">Publicar comentario</button>
+        </form>
+
+        <div class="comment-list" id="commentList"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="cta" id="contacto">
+        <h2>¿Quieres estar al día?</h2>
+        <p>
+          Sigue las noticias, historias y reportajes de LuchaVerde sobre sustentabilidad,
+          economía circular y cultura mexicana.
+        </p>
+        <a class="btn primary" href="#noticias">Ver noticias</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>LuchaVerde / EcoLucha Studio</strong></p>
+    <p>Le ponemos la de a caballo a la contaminación.</p>
+    <p>© 2026 LuchaVerde Noticias. Blog académico / demostrativo.</p>
+  </footer>
+
+<script>
+  const COMMENT_KEY = "luchaverde_comentarios";
+
+  function getComments() {
+    try {
+      return JSON.parse(localStorage.getItem(COMMENT_KEY)) || [];
+    } catch (error) {
+      return [];
+    }
+  }
+
+  function saveComments(comments) {
+    localStorage.setItem(COMMENT_KEY, JSON.stringify(comments));
+  }
+
+  function renderComments() {
+    const list = document.getElementById("commentList");
+    const comments = getComments();
+
+    if (!comments.length) {
+      list.innerHTML = '<div class="empty-comments">Todavía no hay comentarios. ¡Sé el primero en participar!</div>';
+      return;
+    }
+
+    list.innerHTML = comments.map((comment, index) => `
+      <article class="comment">
+        <button class="delete-comment" onclick="deleteComment(${index})" title="Eliminar comentario">Eliminar</button>
+        <strong>${escapeHtml(comment.name)}</strong>
+        <small>${escapeHtml(comment.date)}</small>
+        <p>${escapeHtml(comment.text)}</p>
+      </article>
+    `).join("");
+  }
+
+  function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  function deleteComment(index) {
+    const comments = getComments();
+    comments.splice(index, 1);
+    saveComments(comments);
+    renderComments();
+  }
+
+  document.getElementById("commentForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("commentName").value.trim();
+    const text = document.getElementById("commentText").value.trim();
+
+    if (!name || !text) return;
+
+    const comments = getComments();
+    comments.unshift({
+      name: name,
+      text: text,
+      date: new Date().toLocaleString("es-MX", {
+        dateStyle: "medium",
+        timeStyle: "short"
+      })
+    });
+
+    saveComments(comments);
+    this.reset();
+    renderComments();
+  });
+
+  renderComments();
+</script>
+
+</body>
+</html>
